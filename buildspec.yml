@@ -20,8 +20,9 @@ phases:
 
   post_build:
     commands:
-      - aws s3 cp s3://guarnier/dummyfolder
+      - echo Build completed on `date`
 
 artifacts:
   files:
     - 'build/**/*'
+  name: build-$(date +%Y-%m-%d)
