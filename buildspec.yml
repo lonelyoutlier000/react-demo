@@ -1,0 +1,22 @@
+version: 0.2
+
+env:
+  variables:
+    NODE_ENV: "production"
+
+phases:
+  install:
+    commands:
+      - yarn install --production
+
+  build:
+    commands:
+      - yarn build
+
+  post_build:
+    commands:
+      - aws s3 cp s3://guarnier/dummyfolder
+
+artifacts:
+  files:
+    - 'build/**/*'
