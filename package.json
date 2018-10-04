@@ -10,6 +10,9 @@
     "react": "16.5.2",
     "react-dom": "16.5.2"
   },
+  "scripts": {
+    "build": "webpack"
+  },
   "devDependencies": {
     "babel-core": "6.26.3",
     "babel-loader": "7",
