@@ -11,7 +11,8 @@
     "react-dom": "16.5.2"
   },
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "deploy": "yarn install --production=false && webpack"
   },
   "devDependencies": {
     "babel-core": "6.26.3",

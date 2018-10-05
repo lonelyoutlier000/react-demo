@@ -1,0 +1,10 @@
+image: node:8.12.0
+
+variables:
+  NODE_ENV: 'production'
+
+build:
+  - yarn deploy
+
+deploy:
+  - aws s3 cp build s3://guarnier/gitlab-ci --recursive
