@@ -1,4 +1,7 @@
-image: node:8.12.0
+image: node:8.12.0-alpine
+
+services:
+  - cgswong/aws:aws
 
 cache:
   paths:
