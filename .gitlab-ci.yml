@@ -9,18 +9,12 @@ variables:
   NODE_ENV: 'production'
 
 stages:
-  - install
-  - build
   - deploy
-
-install:
-  stage: install
-  script: yarn install --production=false
-
-build:
-  stage: build
-  script: yarn build
 
 deploy:
   stage: deploy
-  script: aws s3 cp build s3://guarnier/gitlab-ci --recursive
+  before_script:
+    - yarn install --production=false
+  script:
+    - yarn build
+    - aws s3 cp build s3://guarnier/gitlab-ci --recursive
