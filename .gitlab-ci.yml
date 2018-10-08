@@ -1,7 +1,7 @@
 image: node:8.12.0-alpine
 
 services:
-  - cgswong/aws:aws
+  - mesosphere/aws-cli
 
 cache:
   paths:
@@ -15,9 +15,10 @@ stages:
   - deploy
 
 deploy:
+  connect: mesosphere__aws-cli
   stage: deploy
   before_script:
     - yarn install --production=false
   script:
     - yarn build
-    - aws s3 cp build s3://guarnier/gitlab-ci --recursive
+    - ./aws.sh s3 cp ../build s3://guarnier/gitlab-ci --recursive
