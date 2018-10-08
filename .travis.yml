@@ -4,10 +4,10 @@ node_js:
 
 before_install:
   - sudo apt-get install -y python python-pip
+  - sudo pip install awscli
 
 install:
   - yarn install --production=false
-  - pip install awscli
 
 script:
   - yarn build
