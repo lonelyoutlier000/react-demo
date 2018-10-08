@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  "8.12.0"
+
+install:
+  - yarn install --production=false
+
+script:
+  - apt-get install -y python py-pip
+  - pip install awscli
+  - yarn build
+  - aws s3 cp build s3://guarnier/travis-ci --recursive
