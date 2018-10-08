@@ -9,6 +9,7 @@ stages:
 deploy:
   stage: deploy
   before_script:
+    - apk add python py-pip
     - pip install awscli
     - apk add nodejs=8.12.0-r0
     - apk add yarn
