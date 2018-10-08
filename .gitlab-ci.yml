@@ -1,4 +1,4 @@
-image: xueshanf/awscli
+image: mesosphere/aws-cli:latest
 
 cache:
   paths:
