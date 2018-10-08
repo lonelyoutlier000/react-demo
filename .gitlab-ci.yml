@@ -1,4 +1,4 @@
-image: cgswong/aws:aws
+image: xueshanf/awscli
 
 cache:
   paths:
