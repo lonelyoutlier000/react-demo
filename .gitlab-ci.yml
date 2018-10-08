@@ -1,10 +1,5 @@
 image: mesosphere/aws-cli:latest
 
-cache:
-  paths:
-    - node_modules/
-    - .yarn
-
 variables:
   NODE_ENV: 'production'
 
