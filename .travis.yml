@@ -3,7 +3,7 @@ node_js:
   "8.12.0"
 
 before_install:
-  - sudo apt-get install -y python py-pip
+  - sudo apt-get install -y python python-pip
 
 install:
   - yarn install --production=false
