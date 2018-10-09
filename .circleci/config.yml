@@ -9,9 +9,9 @@ jobs:
       - checkout
 
       - restore_cache:
-        keys:
-          - node-modules-{{ checksum "package.json" }}
-          - node-modules-
+          keys:
+            - node-modules-{{ checksum "package.json" }}
+            - node-modules-
 
       - restore_cache:
           key: awscli
