@@ -36,10 +36,9 @@ jobs:
       - run:
           name: Install AWS cli
           command: |
-            pip install --user virtualenv
-            virtualenv ~/my-virtual-env
-            source ~/my-virtual-env/bin/activate
-            pip install awscli
+            python3 -m venv my-virtual-env
+            source my-virtual-env/bin/activate
+            pip3 install awscli
 
       - run: yarn install --production=false
 
