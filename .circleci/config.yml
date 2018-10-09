@@ -1,56 +1,42 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
       - image: circleci/node:8.12
 
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
+    working_directory: ~/repo
+    steps:
+      - checkout
 
-      working_directory: ~/repo
+      - restore_cache:
+        keys:
+          - node-modules-{{ checksum "package.json" }}
+          - node-modules-
 
-      steps:
-        - checkout
+      - restore_cache:
+          key: awscli
 
-        # Download and cache dependencies
-        - restore_cache:
-          keys:
-            - node-modules-{{ checksum "package.json" }}
+      - run:
+          name: Install pip
+          command: sudo apt-get install -y python-pip
 
-            # fallback to using the latest cache if no exact match is found
-            - node-modules-
+      - run:
+          name: Install AWS cli in python virtual environment
+          command: pip install awscli
 
-        - restore_cache:
-            key: awscli
+      - run:
+          name: Install application
+          command: yarn install --production=false
 
-        - run:
-            name: Install pip
-            command: sudo apt-get install -y python-pip
+      - run:
+          name: Build application
+          command: yarn build
 
-        - run:
-            name: Install AWS cli in python virtual environment
-            command: pip install awscli
+      - run:
+          name: Publish to AWS S3
+          command: aws s3 cp build s3://guarnier/circle-ci --recursive
 
-        - run:
-            name: Install application
-            command: yarn install --production=false
-
-        - run:
-            name: Build application
-            command: yarn build
-
-        - run:
-            name: Publish to AWS S3
-            command: aws s3 cp build s3://guarnier/circle-ci --recursive
-
-        - save_cache:
-            paths:
-              - node_modules
-            key: node-modules-{{ checksum "package.json" }}
+      - save_cache:
+          paths:
+            - node_modules
+          key: node-modules-{{ checksum "package.json" }}
