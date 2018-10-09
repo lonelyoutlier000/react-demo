@@ -38,7 +38,7 @@ jobs:
           command: |
             python3 -m venv my-virtual-env
             source my-virtual-env/bin/activate
-            pip3 install awscli
+            sudo pip3 install awscli
 
       - run: yarn install --production=false
 
