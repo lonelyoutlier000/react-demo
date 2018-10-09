@@ -22,7 +22,7 @@ jobs:
 
       - run:
           name: Install AWS cli in python virtual environment
-          command: pip install awscli
+          command: sudo pip install awscli
 
       - run:
           name: Install application
